@@ -33,6 +33,12 @@ You might need to copy this route to your routes file if you need to add middlew
 Route::get('/search', ['as' => 'eloquent-search', 'uses' => '\Jzpeepz\EloquentSearch\Http\Controllers\SearchController@index']);
 ```
 
+Include the search box in your views:
+
+```php
+@include('eloquent-search::search-box')
+```
+
 ## Usage
 
 # Getting Started
