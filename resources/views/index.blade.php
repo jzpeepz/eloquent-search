@@ -7,4 +7,5 @@
         <h3><a href="{{ $result->searchable->url() }}">{{ $result->title }}</a></h3>
         <p>{!! $result->searchable->getSearchDescription() !!}</p>
     </div>
+    {{ $results->links() }}
 @endforeach

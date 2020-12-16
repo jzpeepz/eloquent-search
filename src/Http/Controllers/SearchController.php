@@ -11,7 +11,13 @@ class SearchController extends Controller
     {
         $search = request()->input('q');
 
-        $results = EloquentSearch::find($search);
+        $results = EloquentSearch::find($search)
+            ->paginate(10)
+            ->withQueryString();
+
+        if (function_exists('mimic')) {
+            mimic('Search');
+        }
 
         return view('eloquent-search::index', compact('results'));
     }

@@ -6,6 +6,6 @@ class EloquentSearch
 {
     public static function find($search)
     {
-        return SearchAbstract::whereRaw('MATCH (title, abstract) AGAINST (?)', [$search])->get();
+        return SearchAbstract::whereRaw('MATCH (title, abstract) AGAINST (?)', [$search]);
     }
 }
