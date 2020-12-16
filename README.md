@@ -15,11 +15,63 @@ You can install the package via composer:
 composer require jzpeepz/eloquent-search
 ```
 
+Publish the config file:
+
+```bash
+php artisan vendor:publish --tag=eloquent-search-config
+```
+
+Publish the views so you can customize:
+
+```bash
+php artisan vendor:publish --tag=eloquent-search-views
+```
+
+You might need to copy this route to your routes file if you need to add middleware or customize the search uri:
+
+```php
+Route::get('/search', ['as' => 'eloquent-search', 'uses' => '\Jzpeepz\EloquentSearch\Http\Controllers\SearchController@index']);
+```
+
 ## Usage
 
-``` php
-// Usage description here
-```
+# Getting Started
+
+To make a model searchable, it needs to use the `App\Traits\Searchable` trait.
+
+All searchable models must also be included in the `config/search.php` file. This allows search abstracts to be generated with the command below.
+
+**NOTE:** An exception will be thrown if any searchable models do not have `url()` or `getSearchDescription()` methods. See the customization section for more on those methods.
+
+# Initializing Search
+
+Run the following command to initialize search abstracts for all searchable models.
+
+`php artisan search:init`
+
+# Customization
+
+## What Gets Searched
+
+By default, all attributes in the model will get lumped into the abstract that is searched.
+
+To customize what gets searched, override the `getSearchAbstract()` method to return a string that should be searched.
+
+## Search Results
+
+### Description (required)
+
+Add a `getSearchDescription()` method to your model that returns the description you would like.
+
+### URL (required)
+
+Add a `url()` method to your model. This provides the URL that is linked to in search.
+
+### Title
+
+By default, Searchable will attempt to determine a good title for the result.
+
+To customize, override the `getSearchTitle()` method on your model.
 
 ### Testing
 

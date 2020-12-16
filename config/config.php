@@ -1,8 +1,9 @@
 <?php
 
-/*
- * You can place your custom package configuration in here.
- */
 return [
-
+    // all searchable classes
+    // NOTE: all searchable classes must also use the Searchable trait
+    'searchable' => [
+        // App\Example::class,
+    ],
 ];

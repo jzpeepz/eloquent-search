@@ -4,5 +4,8 @@ namespace Jzpeepz\EloquentSearch;
 
 class EloquentSearch
 {
-    // Build your next great package.
+    public static function find($search)
+    {
+        return SearchAbstract::whereRaw('MATCH (title, abstract) AGAINST (?)', [$search])->get();
+    }
 }
