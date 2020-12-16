@@ -45,7 +45,7 @@ Include the search box in your views:
 
 To make a model searchable, it needs to use the `App\Traits\Searchable` trait.
 
-All searchable models must also be included in the `config/search.php` file. This allows search abstracts to be generated with the command below.
+All searchable models must also be included in the `config/eloquent-search.php` file. This allows search abstracts to be generated with the command below.
 
 **NOTE:** An exception will be thrown if any searchable models do not have `url()` or `getSearchDescription()` methods. See the customization section for more on those methods.
 
