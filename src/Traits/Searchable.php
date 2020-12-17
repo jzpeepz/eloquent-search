@@ -2,6 +2,7 @@
 
 namespace Jzpeepz\EloquentSearch\Traits;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Jzpeepz\EloquentSearch\SearchAbstract;
 
@@ -70,6 +71,13 @@ trait Searchable
         }
 
         return strip_tags(implode(' ', array_values($this->attributes)));
+    }
+
+    public function getSearchTypeLabel()
+    {
+        $parts = explode('\\', get_class($this));
+        $last = end($parts);
+        return Str::of($last)->snake()->replace('_', ' ')->title();
     }
 
     abstract public function url();
