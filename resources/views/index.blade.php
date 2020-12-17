@@ -1,5 +1,5 @@
 <p class="pb-4 mb-4 border-b border-gray-200">
-    {{ $results->isEmpty() ? 'No' : $results->count() }} results found for <span class="font-bold">{{ request()->input('q') }}</span>.
+    {{ $results->isEmpty() ? 'No' : $results->total() }} results found for <span class="font-bold">{{ request()->input('q') }}</span>.
 </p>
 
 @foreach ($results as $result)
