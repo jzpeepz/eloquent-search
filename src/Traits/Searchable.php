@@ -16,6 +16,10 @@ trait Searchable
         static::saved(function (Model $model) {
             $model->generateAbstract();
         });
+
+        static::deleting(function (Model $model) {
+            $model->removeAbstract();
+        });
     }
 
     public function generateAbstract()
@@ -23,8 +27,8 @@ trait Searchable
         $type = get_class();
 
         $abstract = SearchAbstract::where('searchable_id', $this->id)
-                                    ->where('searchable_type', $type)
-                                    ->first();
+            ->where('searchable_type', $type)
+            ->first();
 
         if (empty($abstract)) {
             $abstract = SearchAbstract::create([
@@ -40,6 +44,15 @@ trait Searchable
         $abstract->save();
 
         return $abstract;
+    }
+
+    public function removeAbstract()
+    {
+        $type = get_class();
+
+        $abstract = SearchAbstract::where('searchable_id', $this->id)
+            ->where('searchable_type', $type)
+            ->delete();
     }
 
     public function search($keywords = null)
